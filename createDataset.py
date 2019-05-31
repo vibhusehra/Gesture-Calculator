@@ -20,9 +20,15 @@ def imagePreprocess(frame):
 
 	#reducing the noise in the image
 	kernel = np.ones((5,5))
+	#applying gaussian blur to reduce noise
 	blur = cv2.GaussianBlur(mask,(5,5),1)
+
+	#applying morphological operations 
+	#dilation for filling the gaps in the image
+	#erosion for thinning the image obtained after dilation
 	dilation = cv2.dilate(blur,kernel,iterations = 1)
 	erosion = cv2.erode(dilation,kernel,iterations=1)
+	#thresholding the image
 	ret,thresh = cv2.threshold(erosion,127,255,0)
 
 	return mask,thresh
@@ -32,8 +38,9 @@ count = 0
 #ready = False
 frameCount = 0
 while True:
+	#capture frame
 	ret,frame = cap.read()
-	imgName = str(count) + '.jpg'
+	imgName = str(count) + '.jpg' #name of the image
 	frameCount+=1
 	# if ready == False:
 	# 	time.sleep(1)
@@ -41,12 +48,13 @@ while True:
 	
 	mask,thresh = imagePreprocess(frame)
 
-	if frameCount%5 == 0:
-		if count<1200:
+	if frameCount%5 == 0: #if frame count is a multiple of 5, read that frame and write it into the given file location
+		if count<1200: #capture 1200 images
 			cv2.imwrite(imgName,thresh)
 			count+=1
 	
 
+	#showing the required frames
 	cv2.imshow('frame',frame)
 	cv2.imshow('roi',mask)
 	cv2.imshow('thresh',thresh)
