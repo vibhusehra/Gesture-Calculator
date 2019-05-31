@@ -28,3 +28,8 @@ The dataset was created with the help of <b>openCV</b> library by capturing fram
 Nine                       +  Eight
 :-------------------------:|:-------------------------:
 ![](https://github.com/vibhusehra/Gesture-Calculator/blob/master/Results/nine.PNG)  |  ![](https://github.com/vibhusehra/Gesture-Calculator/blob/master/Results/eight.PNG)
+
+#### Validation Accuracy
+```
+99%
+```
