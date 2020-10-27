@@ -31,5 +31,5 @@ Nine                       +  Eight
 
 #### Validation Accuracy
 ```
-99%
+99.0%
 ```
